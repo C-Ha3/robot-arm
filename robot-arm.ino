@@ -1,0 +1,20 @@
+#include  "joystick-control.hpp"
+
+JoystickControl* robotJoystickControl = new JoystickControl();
+
+void setup() {
+  // put your setup code here, to run once:
+
+  Serial.begin(9600);
+
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  Serial.println(robotJoystickControl->getServo1());
+
+
+  // Serial.print("new cooode, who dis\n");
+
+}

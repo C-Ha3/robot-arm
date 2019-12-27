@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+# zip files
+*.zip
+*.rar
+
+# Solidworks parts
+*.sldprt
+*.sldasm
+*.step
+
+# picture file
+*.jpeg
