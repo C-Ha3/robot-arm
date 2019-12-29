@@ -1,34 +1,26 @@
 #include <Arduino.h>
+#include <Servo.h>
+
+#define SERVO1_PIN 9
+#define SERVO2_PIN 5
 
 class JoystickControl {
     private:
-        int servo1 = NULL; //Digital PWM pin used by the servo 1
-        int servo2 = NULL; //Digital PWM pin used by the servo 2
-        int joyX = 0;   //Analog pin to which the joystick (X) is connected
-        int joyY = 1;   //Analog pin to which the joystick (Y) is connected
-
+       
     public:
         JoystickControl();
-        // JoystickControl(int servo1Pin, int servo2Pin, int joyXPin, int joyYPin);
-        int readServoX();
-        int readServoY();
 
-        void setServoX(int pos);
-        void setServoY(int pos);
+        Servo servo1;
+        Servo servo2;
 
-        int getServo1() {return this->servo1;}
-        int getServo2() {return this->servo2;}
-        int getJoyX() {return this->joyX;}
-        int getJoyY() {return this->joyY;}
+        void servo1To(int angle1) {servo1.write(angle1);}
+        void servo2To(int angle1) {servo2.write(angle1);}
+        void servo1move1();
+        void servo1move2();
 
-        void setServo1(int pin) {this->servo1 = pin;}
-        void setServo2(int pin) {this->servo2 = pin;}
-        void setJoyX(int pin) {this->joyX = pin;}
-        void setJoyY(int pin) {this->joyY = pin;}
-        
+        int readServo1() {servo1.read();}
+        int readServo2() {servo2.read();}
 
         ~JoystickControl();
-
-
 
 };

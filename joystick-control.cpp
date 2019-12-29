@@ -3,21 +3,26 @@
 
 /******************************************************************************/
 //Constructor and Destructore
+JoystickControl::JoystickControl(){
 
+  servo1.attach(SERVO1_PIN);
+  servo2.attach(SERVO2_PIN);
 
-JoystickControl::JoystickControl(int servo1Pin, int servo2Pin, int joyXPin, int joyYPin);
-  this->servo1 = servo1Pin;
-  this->servo2 = servo2Pin;
+}
 
-  this->joyX = joyXPin;
-  this->joyY = joyYPin;
+void JoystickControl::servo1move1() {
+    digitalWrite(SERVO1_PIN, HIGH);
+    delayMicroseconds(1450); // Duration of the pusle in microseconds
+    digitalWrite(SERVO1_PIN, LOW);
+    delayMicroseconds(18550); // 20ms - duration of the pusle
 
-JoystickControl::JoystickControl() {
-  this->servo1 = 3;
-  this->servo2 = 5;
+}
+void JoystickControl::servo1move2() {
+    digitalWrite(SERVO1_PIN, HIGH);
+    delayMicroseconds(2300); // Duration of the pusle in microseconds
+    digitalWrite(SERVO1_PIN, LOW);
+    delayMicroseconds(18550); // 20ms - duration of the pusle
 
-  this->joyX = 0;
-  this->joyY = 1;
 }
 
 JoystickControl::~JoystickControl();
