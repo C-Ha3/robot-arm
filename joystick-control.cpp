@@ -1,23 +1,49 @@
-#include <Servo.h>
 #include "joystick-control.hpp"
 
 /******************************************************************************/
 //Constructor and Destructore
+JoystickControl::JoystickControl(Servo *servo1, Servo *servo2)
+{
+  this->servo1 = servo1;
+  this->servo2 = servo2;
 
+  pinMode(STICK1X_PIN, INPUT);
+  pinMode(STICK1Y_PIN, INPUT);
 
-JoystickControl::JoystickControl(int servo1Pin, int servo2Pin, int joyXPin, int joyYPin);
-  this->servo1 = servo1Pin;
-  this->servo2 = servo2Pin;
+  stick1_y = analogRead(STICK1Y_PIN);
+  stick1_x = analogRead(STICK1X_PIN);
+}
 
-  this->joyX = joyXPin;
-  this->joyY = joyYPin;
+void JoystickControl::readAllSticks()
+{
+  this->stick1_x = analogRead(STICK1X_PIN);
+  this->stick1_y = analogRead(STICK1Y_PIN);
+}
 
-JoystickControl::JoystickControl() {
-  this->servo1 = 3;
-  this->servo2 = 5;
+void JoystickControl::readStick1XAndGo()
+{
+  if (stick1_x > 1000 && stick1_x <= 1024)
+  {
+    servo1->write(this->servo1_pos++);
+  }
 
-  this->joyX = 0;
-  this->joyY = 1;
+  if (stick1_x < 100 && stick1_x >= 0)
+  {
+    servo1->write(this->servo1_pos--);
+  }
+}
+
+void JoystickControl::readStick1YAndGo()
+{
+  if (stick1_y > 1000 && stick1_y <= 1024)
+  {
+    servo2->write(this->servo2_pos++);
+  }
+
+  if (stick1_y < 100 && stick1_y >= 0)
+  {
+    servo2->write(this->servo2_pos--);
+  }
 }
 
 JoystickControl::~JoystickControl();
