@@ -12,6 +12,8 @@ JoystickControl::JoystickControl(Servo *servo1, Servo *servo2)
 
   stick1_y = analogRead(STICK1Y_PIN);
   stick1_x = analogRead(STICK1X_PIN);
+  servo1_pos = this->servo1->read();
+  servo2_pos = this->servo2->read();
 }
 
 void JoystickControl::readAllSticks()
