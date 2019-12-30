@@ -9,22 +9,41 @@ JoystickControl::JoystickControl(Servo *servo1, Servo *servo2)
 
   pinMode(STICK1X_PIN, INPUT);
   pinMode(STICK1Y_PIN, INPUT);
+
+  stick1_y = analogRead(STICK1Y_PIN);
+  stick1_x = analogRead(STICK1X_PIN);
+}
+
+void JoystickControl::readAllSticks()
+{
+  this->stick1_x = analogRead(STICK1X_PIN);
+  this->stick1_y = analogRead(STICK1Y_PIN);
 }
 
 void JoystickControl::readStick1XAndGo()
 {
-  stick1_x = analogRead(STICK1X_PIN);
-  servo1_pos = map(stick1_x, 0, 1023, 0, 180);
+  if (stick1_x > 1000 && stick1_x <= 1024)
+  {
+    servo1->write(this->servo1_pos++);
+  }
 
-  servo1->write(servo1_pos);
+  if (stick1_x < 100 && stick1_x >= 0)
+  {
+    servo1->write(this->servo1_pos--);
+  }
 }
 
 void JoystickControl::readStick1YAndGo()
 {
-  stick1_y = analogRead(STICK1Y_PIN);
-  servo2_pos = map(stick1_y, 0, 1023, 0, 180);
-  
-  servo2->write(servo2_pos);
+  if (stick1_y > 1000 && stick1_y <= 1024)
+  {
+    servo2->write(this->servo2_pos++);
+  }
+
+  if (stick1_y < 100 && stick1_y >= 0)
+  {
+    servo2->write(this->servo2_pos--);
+  }
 }
 
 JoystickControl::~JoystickControl();

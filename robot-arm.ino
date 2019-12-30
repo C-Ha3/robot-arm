@@ -20,15 +20,10 @@ void setup()
 
 void loop()
 {
-
-  if (analogRead(A0) > 1000 || analogRead(A0) < 100) {
+  robotControl->readAllSticks();
+  delay(5);
   robotControl->readStick1XAndGo();
-  Serial.println(analogRead(A0));
-  }
-
-  if (analogRead(A1) > 1000 || analogRead(A1) < 100)
-  {
-    robotControl->readStick1YAndGo();
-    Serial.println(analogRead(A1));
-  }
+  delay(5);
+  robotControl->readStick1YAndGo();
+  delay(5);
 }

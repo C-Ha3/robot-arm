@@ -19,6 +19,8 @@ public:
     Servo *servo1;
     Servo *servo2;
 
+    void readAllSticks();
+
     void readStick1XAndGo();
     void readStick1YAndGo();
     
